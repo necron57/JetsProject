@@ -1,26 +1,23 @@
 package com.skilldistillery.jets.entities;
 
 import java.util.Objects;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public abstract class Jet {
 	private String model;
 	private double speed;
 	private int range;
 	private long price;
-	private static int currentNumberOfShips;
-	private int id = 0;
 
-	public abstract void fly();
+	public void sail() {
+
+	}
 
 	public Jet() {
 
 	}
 
 	public Jet(String model, double speed, int range, long price) {
-		Jet.currentNumberOfShips++;
-		id = Jet.currentNumberOfShips;
+
 		this.model = model;
 		this.speed = speed;
 		this.range = range;
@@ -45,8 +42,7 @@ public abstract class Jet {
 
 	@Override
 	public String toString() {
-		return "Ship  [ShipID=" + id + ", model=" + model + ", speedInMPH=" + speed + ", range=" + range + 
-				", price=" + price + "]";
+		return "Ship model=" + model + ", speedInMPH=" + speed + ", range=" + range + ", price=" + price + "]";
 	}
 
 	@Override

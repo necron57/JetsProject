@@ -20,13 +20,13 @@ public class JetsApp {
 
 		boolean running = true;
 		while (running) {
-			System.out.println("Please make a selection from the menu listed:");
+			System.out.println("\nPlease make a selection from the menu listed:");
 			printMenu();
 			int input = sc.nextInt();
 			if (input == 1) {
 				listFleet();
 			} else if (input == 2) {
-				flyShips();
+				sailShips();
 			} else if (input == 3) {
 				fastestShip();
 			} else if (input == 4) {
@@ -40,16 +40,17 @@ public class JetsApp {
 			} else if (input == 8) {
 				removeShip();
 			} else if (input == 9) {
-				System.out.println("quitting program");
+				System.out.println("QUITTING PROGRAM");
 				running = false;
 			}
+
 		}
 		sc.close();
 	}
 
 	private void printMenu() {
 		System.out.println("1. List fleet");
-		System.out.println("2. Fly all Ships");
+		System.out.println("2. Sail all Ships");
 		System.out.println("3. View fastest Ship");
 		System.out.println("4. View Ship with longest range");
 		System.out.println("5. Escort Fleet");
@@ -63,7 +64,7 @@ public class JetsApp {
 		af.listShips();
 	}
 
-	private void flyShips() {
+	private void sailShips() {
 		af.sailShip();
 	}
 
@@ -98,10 +99,8 @@ public class JetsApp {
 	}
 
 	private void removeShip() {
-		System.out.println("Please select the Ship by its ID that you would like to remove: ");
-		af.listShips();
-		int userChoice=sc.nextInt();
-		af.removeShip(userChoice);
+
+		af.removeShip();
 
 	}
 

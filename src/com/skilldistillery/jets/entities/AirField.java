@@ -4,18 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 public class AirField {
 	private Jet newJet;
+	Scanner sc = new Scanner(System.in);
 	private List<Jet> fleet = new ArrayList<>();
-//	public static void main(String[] args) {
-//		String fileName = "jets.txt";
-//		AirField af = new AirField();
-//		List<Jet> fleet= af.readJets(fileName);
-//		System.out.println(fleet);
-//	}
 
 	public AirField() {
 
@@ -53,70 +48,78 @@ public class AirField {
 	}
 
 	public void listShips() {
-
-		Iterator<Jet> listOfJets = fleet.iterator();
-		while (listOfJets.hasNext()) {
-			System.out.println(listOfJets.next());
+		for (Jet ship : fleet) {
+			if (ship != null) {
+				System.out.println(ship);
+			}
 		}
 
 	}
 
 	public void sailShip() {
-//		fleet.
+		for (int i = 0; i < fleet.size(); i++) {
+			newJet = fleet.get(i);
+			System.out.print(newJet);
+			newJet.sail();
+		}
 
 	}
 
 	public void fastestShip() {
 		System.out.println("The fastest Ship is: ");
-		Jet fastJet = fleet.get(0);
-		for (Jet jet : fleet) {
-			if (jet != null) {
-				if (fastJet.getSpeed() < jet.getSpeed()) {
-					fastJet = jet;
+		newJet = fleet.get(0);
+		for (Jet ship : fleet) {
+			if (ship != null) {
+				if (newJet.getSpeed() < ship.getSpeed()) {
+					newJet = ship;
 				}
 			}
 
 		}
-		System.out.println(fastJet);
+		System.out.println(newJet);
 	}
 
 	public void longestRangeShip() {
 		System.out.println("The Ship with the longest range is: ");
-		Jet longRangeShip = fleet.get(0);
-		for (Jet jet : fleet) {
-			if (jet != null) {
-				if (longRangeShip.getRange() < jet.getRange()) {
-					longRangeShip = jet;
+		newJet = fleet.get(0);
+		for (Jet ship : fleet) {
+			if (ship != null) {
+				if (newJet.getRange() < ship.getRange()) {
+					newJet = ship;
 				}
 			}
 
 		}
-		System.out.println(longRangeShip);
+		System.out.println(newJet);
 	}
 
 	public void addShip(String name, Double speed, int range, long price) {
-		Jet newJet = null;
+		newJet = null;
 		String nameOfJet = name;
 		Double speedOfJet = speed;
 		int rangeOfJet = range;
 		long priceOfJet = price;
 		if (nameOfJet.equalsIgnoreCase("Battleship")) {
 			newJet = new BattleShip(nameOfJet, speedOfJet, rangeOfJet, priceOfJet);
-		}
-		if (nameOfJet.equalsIgnoreCase("Cruiser")) {
+		} else if (nameOfJet.equalsIgnoreCase("Cruiser")) {
 			newJet = new Cruiser(nameOfJet, speedOfJet, rangeOfJet, priceOfJet);
 		} else if (nameOfJet.equalsIgnoreCase("Frigate")) {
 			newJet = new Frigate(nameOfJet, speedOfJet, rangeOfJet, priceOfJet);
 		}
+
 		fleet.add(newJet);
+		System.out.println(" Added ship to fleet ");
 
 	}
 
-	public void removeShip(int userChoice) {
-		System.out.println("you have chosen to remove:" + "Ship ID: " + userChoice);
-		if (userChoice >= 0) {
-			fleet.remove(userChoice);
+	public void removeShip() {
+		System.out.println("Please select the Ship that you would like to remove:  ");
+		for (int index = 0; index < fleet.size(); index++) {
+			System.out.println(index + ". " + fleet.get(index));
 		}
+		int selection = sc.nextInt();
+		fleet.remove(selection);
+
 	}
 
 	public void command() {
